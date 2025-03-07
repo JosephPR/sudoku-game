@@ -48,14 +48,13 @@ const SudokuGame: React.FC = () => {
         onReset={gameActions.resetGame}
         isGameStarted={gameState.isGameStarted}
         isGameComplete={gameState.isGameComplete}
-        difficulty={gameState.difficulty}
         hintsUsed={gameState.hintsUsed}
       />
 
       {!gameState.isGameStarted && (
         <div className="mt-8 text-center">
           <h2 className="text-2xl font-bold mb-4">Welcome to Sudoku!</h2>
-          <p className="mb-2">Click "New Game" to start playing.</p>
+          <p className="mb-2">Click &quot;New Game&quot; to start playing.</p>
           <p className="text-sm text-gray-600 dark:text-gray-400">
             Fill the grid so that every row, column, and 3×3 box contains the digits 1-9.
           </p>

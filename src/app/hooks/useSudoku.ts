@@ -3,15 +3,12 @@
 import { useState, useCallback, useEffect } from 'react';
 import {
   Board,
-  Cell,
   EMPTY_CELL_VALUE,
-  BOARD_SIZE,
   initializeEmptyBoard,
   generateSudokuPuzzle,
   isValidPlacement,
   getHighlightedCells,
   isBoardComplete,
-  getInvalidCells,
   getHint,
   solveSudoku,
   deepCopyBoard,
@@ -104,8 +101,8 @@ export const useSudoku = (): [GameState, GameActions] => {
         return {
           ...prevState,
           selectedCell: null,
-          board: prevState.board.map((r, rowIndex) =>
-            r.map((cell, colIndex) => ({
+          board: prevState.board.map((r) =>
+            r.map((cell) => ({
               ...cell,
               isSelected: false,
               isHighlighted: false,
@@ -116,12 +113,12 @@ export const useSudoku = (): [GameState, GameActions] => {
 
       // Update the board to highlight cells
       const highlightedCells = getHighlightedCells(prevState.board, row, col);
-      const newBoard = prevState.board.map((r, rowIndex) =>
-        r.map((cell, colIndex) => ({
+      const newBoard = prevState.board.map((r, rowIdx) =>
+        r.map((cell, colIdx) => ({
           ...cell,
-          isSelected: rowIndex === row && colIndex === col,
+          isSelected: rowIdx === row && colIdx === col,
           isHighlighted: highlightedCells.some(
-            ([r, c]) => r === rowIndex && c === colIndex
+            ([r, c]) => r === rowIdx && c === colIdx
           ),
         }))
       );
@@ -154,9 +151,9 @@ export const useSudoku = (): [GameState, GameActions] => {
       }
 
       // Create a new board with the updated cell
-      const newBoard = prevState.board.map((r, rowIndex) =>
-        r.map((c, colIndex) => {
-          if (rowIndex === row && colIndex === col) {
+      const newBoard = prevState.board.map((r, rowIdx) =>
+        r.map((c, colIdx) => {
+          if (rowIdx === row && colIdx === col) {
             return {
               ...c,
               value,
@@ -203,9 +200,9 @@ export const useSudoku = (): [GameState, GameActions] => {
       }
 
       // Create a new board with the updated cell
-      const newBoard = prevState.board.map((r, rowIndex) =>
-        r.map((c, colIndex) => {
-          if (rowIndex === row && colIndex === col) {
+      const newBoard = prevState.board.map((r, rowIdx) =>
+        r.map((c, colIdx) => {
+          if (rowIdx === row && colIdx === col) {
             return {
               ...c,
               notes,
@@ -234,9 +231,9 @@ export const useSudoku = (): [GameState, GameActions] => {
       if (cell.isGiven) return prevState;
 
       // Create a new board with the cleared cell
-      const newBoard = prevState.board.map((r, rowIndex) =>
-        r.map((c, colIndex) => {
-          if (rowIndex === row && colIndex === col) {
+      const newBoard = prevState.board.map((r, rowIdx) =>
+        r.map((c, colIdx) => {
+          if (rowIdx === row && colIdx === col) {
             return {
               ...c,
               value: EMPTY_CELL_VALUE,
@@ -266,9 +263,9 @@ export const useSudoku = (): [GameState, GameActions] => {
       const [row, col, value] = hint;
 
       // Create a new board with the hint applied
-      const newBoard = prevState.board.map((r, rowIndex) =>
-        r.map((c, colIndex) => {
-          if (rowIndex === row && colIndex === col) {
+      const newBoard = prevState.board.map((r, rowIdx) =>
+        r.map((c, colIdx) => {
+          if (rowIdx === row && colIdx === col) {
             return {
               ...c,
               value,

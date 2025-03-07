@@ -9,7 +9,6 @@ interface GameControlsProps {
   onReset: () => void;
   isGameStarted: boolean;
   isGameComplete: boolean;
-  difficulty: 'easy' | 'medium' | 'hard' | 'expert';
   hintsUsed: number;
 }
 
@@ -20,7 +19,6 @@ const GameControls: React.FC<GameControlsProps> = ({
   onReset,
   isGameStarted,
   isGameComplete,
-  difficulty,
   hintsUsed,
 }) => {
   const [showDifficultySelector, setShowDifficultySelector] = React.useState(false);

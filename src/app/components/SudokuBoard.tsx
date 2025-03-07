@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Board, BOARD_SIZE, BOX_SIZE, EMPTY_CELL_VALUE } from '../utils/sudokuUtils';
+import { Board, BOARD_SIZE, BOX_SIZE } from '../utils/sudokuUtils';
 import SudokuCell from './SudokuCell';
 
 interface SudokuBoardProps {
